@@ -283,6 +283,17 @@ int main(void)
                     1,
                     100);
 
+  /* Sample rate divider: 9 */
+  mpu6050_data = 0x09;
+
+  HAL_I2C_Mem_Write(&hi2c1,
+                    MPU6050_ADDR,
+                    MPU6050_SMPLRT_DIV,
+                    I2C_MEMADD_SIZE_8BIT,
+                    &mpu6050_data,
+                    1,
+                    100);
+
   /* Accelerometer: ±2g */
   mpu6050_data = 0x00;
 
