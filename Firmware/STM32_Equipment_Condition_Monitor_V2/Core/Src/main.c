@@ -65,7 +65,7 @@ UART_HandleTypeDef huart1;
 int32_t vibration_deviation_mg = 0;
 const uint8_t uart_test_message[] =
 "\r\n========================================\r\n"
-"STM32 EQUIPMENT CONDITION MONITOR V1\r\n"
+"STM32 EQUIPMENT CONDITION MONITOR V2\r\n"
 "[UART] USART1 DIAGNOSTIC TEST\r\n"
 "[UART] PASS - TRANSMITTER ACTIVE\r\n"
 "========================================\r\n";
