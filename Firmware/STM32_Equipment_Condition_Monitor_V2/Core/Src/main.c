@@ -86,6 +86,12 @@ uint8_t validation_history_count = 0;
 
 int32_t vibration_samples[VIBRATION_WINDOW_SIZE];
 uint8_t vibration_sample_count = 0;
+int32_t vibration_rms_mg = 0;
+uint32_t vibration_sum_squares = 0;
+int32_t vibration_peak_mg = 0;
+int32_t vibration_peak_to_peak_mg = 0;
+int32_t vibration_min_mg = 0;
+int32_t vibration_max_mg = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -540,6 +546,25 @@ int main(void)
           vibration_samples[vibration_sample_count] = accel_mag_mg;
           vibration_sample_count++;
       }
+      if (vibration_sample_count >= VIBRATION_WINDOW_SIZE)
+      {
+          vibration_sum_squares = 0;
+
+          for (uint8_t i = 0; i < VIBRATION_WINDOW_SIZE; i++)
+          {
+              vibration_sum_squares +=
+                  (uint32_t)(vibration_samples[i] * vibration_samples[i]);
+          }
+
+          vibration_rms_mg =
+              (int32_t)sqrtf(
+                  (float)vibration_sum_squares /
+                  VIBRATION_WINDOW_SIZE
+              );
+
+          vibration_sample_count = 0;
+      }
+
       if (baseline_ready)
       {
           vibration_deviation_mg = accel_mag_mg - baseline_mag_mg;
