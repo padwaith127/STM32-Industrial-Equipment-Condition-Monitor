@@ -751,7 +751,7 @@ int main(void)
 
       HAL_GPIO_TogglePin(STATUS_LED_GPIO_Port, STATUS_LED_Pin);
 
-      HAL_Delay(500);
+      HAL_Delay(10);
   }
 }
 /**
