@@ -543,21 +543,7 @@ int main(void)
       );
 
       accel_mag_mg = (int32_t)accel_mag;
-      if (baseline_ready)
-      {
-          if (vibration_sample_count < VIBRATION_WINDOW_SIZE)
-          {
-        	  vibration_filtered_mg =
-        	      ((vibration_filter_prev_mg * 3) +
-        	       vibration_deviation_mg) / 4;
 
-        	  vibration_filter_prev_mg = vibration_filtered_mg;
-
-        	  vibration_samples[vibration_sample_count] =
-        	      vibration_filtered_mg;
-              vibration_sample_count++;
-          }
-      }
       if (vibration_sample_count >= VIBRATION_WINDOW_SIZE)
       {
           vibration_sum_squares = 0;
@@ -607,6 +593,25 @@ int main(void)
       {
           vibration_deviation_mg = 0;
       }
+
+      if (baseline_ready)
+      {
+          if (vibration_sample_count < VIBRATION_WINDOW_SIZE)
+          {
+        	  vibration_filtered_mg =
+        	      ((vibration_filter_prev_mg * 3) +
+        	       vibration_deviation_mg) / 4;
+
+        	  vibration_filter_prev_mg = vibration_filtered_mg;
+
+        	  vibration_samples[vibration_sample_count] =
+        	      vibration_filtered_mg;
+              vibration_sample_count++;
+          }
+      }
+
+
+
       if (!baseline_ready)
       {
           baseline_sum += accel_mag_mg;
