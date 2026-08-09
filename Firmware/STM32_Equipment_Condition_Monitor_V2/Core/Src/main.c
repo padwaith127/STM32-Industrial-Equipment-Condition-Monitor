@@ -81,6 +81,11 @@ uint8_t baseline_count = 0;
 uint8_t validation_history[VALIDATION_HISTORY_SIZE];
 uint8_t validation_history_index = 0;
 uint8_t validation_history_count = 0;
+#define VIBRATION_SAMPLE_RATE_HZ 100
+#define VIBRATION_WINDOW_SIZE 50
+
+int32_t vibration_samples[VIBRATION_WINDOW_SIZE];
+uint8_t vibration_sample_count = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -530,6 +535,11 @@ int main(void)
       );
 
       accel_mag_mg = (int32_t)accel_mag;
+      if (vibration_sample_count < VIBRATION_WINDOW_SIZE)
+      {
+          vibration_samples[vibration_sample_count] = accel_mag_mg;
+          vibration_sample_count++;
+      }
       if (baseline_ready)
       {
           vibration_deviation_mg = accel_mag_mg - baseline_mag_mg;
