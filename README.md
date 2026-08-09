@@ -1011,3 +1011,47 @@ Embedded Systems | Hardware Validation | Electronics Test & Validation
 This project is intended primarily as an educational and engineering portfolio project.
 
 The firmware and documentation are provided for learning, experimentation, hardware validation, and portfolio demonstration.
+
+---
+
+# V1 Validation Evidence
+
+## Physical Hardware Setup
+
+![V1 Hardware Setup](Images/V1_Hardware_Setup.jpg)
+
+STM32F103C8T6 Blue Pill with MPU6050 sensor and supporting hardware used for the V1 prototype.
+
+---
+
+## STM32CubeMX Configuration
+
+![V1 CubeMX Configuration](Images/V1_CubeMX_Configuration.png)
+
+STM32CubeMX configuration showing the STM32F103C8T6 peripheral configuration used for V1.
+
+---
+
+## MPU6050 Functional Self-Test
+
+![V1 UART Self Test](Images/V1_UART_Self_Test.png)
+
+UART diagnostic output showing MPU6050 communication, initialization, accelerometer read, gyroscope read, and functional self-test PASS.
+
+---
+
+## Final Monitoring Output
+
+![V1 Final Monitoring Output](Images/V1_Final_Monitoring_Output.png)
+
+Final V1 monitoring output showing successful initialization, baseline acquisition, validation history, and continuous NORMAL operation.
+
+---
+
+## Sensor Failure / Fault Injection
+
+![V1 Sensor Failure](Images/V1_Sensor_Failure.png)
+
+Fault-injection test performed by interrupting the MPU6050 I2C connection. The firmware detects the communication failure and reports `ACCEL READ FAIL` instead of continuing with new sensor measurements.
+
+---
