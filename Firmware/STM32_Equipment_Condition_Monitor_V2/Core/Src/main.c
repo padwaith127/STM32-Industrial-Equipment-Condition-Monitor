@@ -700,34 +700,43 @@ int main(void)
       else if (vibration_deviation_mg >= CONDITION_CRITICAL_MG)
       {
           len = sprintf(buffer,
-                        "ACC X=%4ld Y=%4ld Z=%4ld | MAG=%4ld | DEV=%4ld | VIB=%-8s | CRITICAL\r\n",
+                        "ACC X=%4ld Y=%4ld Z=%4ld | MAG=%4ld | DEV=%4ld | RMS=%4ld | PEAK=%4ld | P-P=%4ld | VIB=%-8s | CRITICAL\r\n",
                         ax_mg,
                         ay_mg,
                         az_mg,
                         accel_mag_mg,
                         vibration_deviation_mg,
+                        vibration_rms_mg,
+                        vibration_peak_mg,
+                        vibration_peak_to_peak_mg,
                         vibration_status);
       }
       else if (vibration_deviation_mg >= CONDITION_WARNING_MG)
       {
           len = sprintf(buffer,
-                        "ACC X=%4ld Y=%4ld Z=%4ld | MAG=%4ld | DEV=%4ld | VIB=%-8s | WARNING \r\n",
+                        "ACC X=%4ld Y=%4ld Z=%4ld | MAG=%4ld | DEV=%4ld | RMS=%4ld | PEAK=%4ld | P-P=%4ld | VIB=%-8s | WARNING\r\n",
                         ax_mg,
                         ay_mg,
                         az_mg,
                         accel_mag_mg,
                         vibration_deviation_mg,
+                        vibration_rms_mg,
+                        vibration_peak_mg,
+                        vibration_peak_to_peak_mg,
                         vibration_status);
       }
       else
       {
           len = sprintf(buffer,
-                        "ACC X=%4ld Y=%4ld Z=%4ld | MAG=%4ld | DEV=%4ld | VIB=%-8s | NORMAL  \r\n",
+                        "ACC X=%4ld Y=%4ld Z=%4ld | MAG=%4ld | DEV=%4ld | RMS=%4ld | PEAK=%4ld | P-P=%4ld | VIB=%-8s | NORMAL\r\n",
                         ax_mg,
                         ay_mg,
                         az_mg,
                         accel_mag_mg,
                         vibration_deviation_mg,
+                        vibration_rms_mg,
+                        vibration_peak_mg,
+                        vibration_peak_to_peak_mg,
                         vibration_status);
       }
       HAL_UART_Transmit(&huart1,
