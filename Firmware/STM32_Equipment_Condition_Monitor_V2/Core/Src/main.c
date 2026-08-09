@@ -547,8 +547,14 @@ int main(void)
       {
           if (vibration_sample_count < VIBRATION_WINDOW_SIZE)
           {
-              vibration_samples[vibration_sample_count] =
-                  vibration_deviation_mg;
+        	  vibration_filtered_mg =
+        	      ((vibration_filter_prev_mg * 3) +
+        	       vibration_deviation_mg) / 4;
+
+        	  vibration_filter_prev_mg = vibration_filtered_mg;
+
+        	  vibration_samples[vibration_sample_count] =
+        	      vibration_filtered_mg;
               vibration_sample_count++;
           }
       }
