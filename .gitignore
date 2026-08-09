@@ -1,0 +1,32 @@
+# STM32CubeIDE generated build files
+Debug/
+Release/
+
+# Eclipse generated files
+.metadata/
+*.log
+
+# Object and dependency files
+*.o
+*.d
+*.su
+*.cyclo
+
+# Build outputs
+*.elf
+*.map
+*.list
+*.hex
+*.bin
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# OS files
+Thumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/
