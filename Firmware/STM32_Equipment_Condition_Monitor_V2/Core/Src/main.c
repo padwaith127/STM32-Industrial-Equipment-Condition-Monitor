@@ -549,11 +549,23 @@ int main(void)
       if (vibration_sample_count >= VIBRATION_WINDOW_SIZE)
       {
           vibration_sum_squares = 0;
+          vibration_min_mg = vibration_samples[0];
+          vibration_max_mg = vibration_samples[0];
 
           for (uint8_t i = 0; i < VIBRATION_WINDOW_SIZE; i++)
           {
               vibration_sum_squares +=
                   (uint32_t)(vibration_samples[i] * vibration_samples[i]);
+
+              if (vibration_samples[i] < vibration_min_mg)
+              {
+                  vibration_min_mg = vibration_samples[i];
+              }
+
+              if (vibration_samples[i] > vibration_max_mg)
+              {
+                  vibration_max_mg = vibration_samples[i];
+              }
           }
 
           vibration_rms_mg =
@@ -561,6 +573,11 @@ int main(void)
                   (float)vibration_sum_squares /
                   VIBRATION_WINDOW_SIZE
               );
+
+          vibration_peak_mg = vibration_max_mg;
+
+          vibration_peak_to_peak_mg =
+              vibration_max_mg - vibration_min_mg;
 
           vibration_sample_count = 0;
       }
